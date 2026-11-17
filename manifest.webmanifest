@@ -1,0 +1,28 @@
+{
+  "name": "Proper Look-out",
+  "short_name": "Look-out",
+  "description": "COLREGs Rules 1–41, Annexes, lights, shapes, sound signals, situations, IALA buoyage and the Code of Signals — with exam tracks from semester to Master orals.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08131b",
+  "theme_color": "#0c2230",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
