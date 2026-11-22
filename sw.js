@@ -1,5 +1,5 @@
 // Proper Look-out offline support. Pages: network first (so updates arrive), cached copy when offline.
-const CACHE = 'plo-ecc8b871890d';
+const CACHE = 'plo-98c729c82829';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 const PICS = ["./pics/fitz-1.webp","./pics/ever-1.webp","./pics/ever-2.webp","./pics/mccain-1.webp","./pics/solong-1.webp","./pics/doria-1.webp","./pics/ingstad-1.webp","./pics/ingstad-3.webp","./pics/florida-1.webp","./pics/busan-1.webp"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE).then(() => Promise.all(PICS.map(u => c.add(u).catch(() => null))))).then(() => self.skipWaiting())); });
@@ -7,6 +7,7 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Pr
 self.addEventListener('fetch', e => {
   const r = e.request; if (r.method !== 'GET') return;
   const u = new URL(r.url);
+  if (/.mp4$/.test(u.pathname)) return;   // the opening film streams from the network (video needs range requests)
   if (r.mode === 'navigate') {
     const home = u.pathname.endsWith('/') || u.pathname.endsWith('/index.html');
     e.respondWith(fetch(r).then(res => { if (res && res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(home ? './index.html' : r, copy)); } return res; })
