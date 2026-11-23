@@ -1,5 +1,5 @@
 // Proper Look-out offline support. Pages: network first (so updates arrive), cached copy when offline.
-const CACHE = 'plo-65e5b697c2be';
+const CACHE = 'plo-b8b30dd8fdc1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 const PICS = ["./pics/fitz-1.webp","./pics/ever-1.webp","./pics/ever-2.webp","./pics/mccain-1.webp","./pics/solong-1.webp","./pics/doria-1.webp","./pics/ingstad-1.webp","./pics/ingstad-3.webp","./pics/florida-1.webp","./pics/busan-1.webp"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE).then(() => Promise.all(PICS.map(u => c.add(u).catch(() => null))))).then(() => self.skipWaiting())); });
